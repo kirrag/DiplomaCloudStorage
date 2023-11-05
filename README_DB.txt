@@ -1,0 +1,24 @@
+psql -h localhost -d postgres -U postgres -W
+
+CREATE ROLE cstorage LOGIN PASSWORD 'cstorage';
+
+CREATE DATABASE cloudstorage;
+
+GRANT ALL PRIVILEGES ON DATABASE cloudstorage TO cstorage;
+
+\c cloudstorage
+
+CREATE SCHEMA cs AUTHORIZATION cstorage;
+
+
+
+psql -h localhost -d cloudstorage -U cstorage -W
+
+ALTER USER cstorage SET search_path TO cs;
+
+INSERT INTO user_entity(id,username,password) VALUES(1, 'user1', '$2y$10$hbFDQnt257hsZlqLkkaFd.xdVWd7xpm.1XX2LPgULOhirXyilkvOK');
+
+INSERT INTO user_entity(id,username,password) VALUES(2, 'ten@otux.ru', '$2y$10$hbFDQnt257hsZlqLkkaFd.xdVWd7xpm.1XX2LPgULOhirXyilkvOK');
+
+
+
