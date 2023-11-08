@@ -1,10 +1,7 @@
 [Desktop Entry]
 Version=1.0
-Name=War Thunder
-Exec=StartupWMClass=War Thunder (Vulkan, 64bit)
 
 Terminal=false
 Type=Application
-Icon=/home/garrik/m2/WarThunder/launcher
 Categories=GNOME;GTK;Network
 StartupNotify=true
