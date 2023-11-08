@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.Unauthorized;
 import org.springframework.web.client.HttpServerErrorException.InternalServerError;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ru.netology.service.JwtUserDetailsService;
 import ru.netology.config.JwtTokenUtil;
@@ -34,6 +35,7 @@ import ru.netology.exception.ExceptionRequestMessages;
 @CrossOrigin
 public class CloudStorageController {
 
+	@Autowired
 	private static ExceptionRequestMessages exceptionRequestMessages;
 
 	@Autowired
@@ -49,6 +51,10 @@ public class CloudStorageController {
 	private JwtUserDetailsService userDetailsService;
 
 	private String home;
+
+
+
+
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
@@ -93,7 +99,7 @@ public class CloudStorageController {
 	@RequestMapping(value = "/file", method = RequestMethod.POST)
 	public ResponseEntity<?> uploadFile(
 			@RequestHeader(value = "auth-token") String token,
-			//@RequestHeader(value = "home") String home,
+			// @RequestHeader(value = "home") String home,
 			@RequestParam(value = "filename") String filename,
 			@RequestBody MultipartFile file) {
 		try {
@@ -117,7 +123,7 @@ public class CloudStorageController {
 	@RequestMapping(value = "/file", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteFile(
 			@RequestHeader(value = "auth-token") String token,
-			//@RequestHeader(value = "home") String home,
+			// @RequestHeader(value = "home") String home,
 			@RequestParam(value = "filename") String filename) {
 		try {
 			storageService.delete(home, filename);
@@ -137,7 +143,7 @@ public class CloudStorageController {
 	@RequestMapping(value = "/file", method = RequestMethod.GET)
 	public ResponseEntity<?> downloadFile(
 			@RequestHeader(value = "auth-token") String token,
-			//@RequestHeader(value = "home") String home,
+			// @RequestHeader(value = "home") String home,
 			@RequestParam(value = "filename") String filename) {
 		try {
 
@@ -161,10 +167,10 @@ public class CloudStorageController {
 	@RequestMapping(value = "/file", method = RequestMethod.PUT)
 	public ResponseEntity<?> renameFile(
 			@RequestHeader(value = "auth-token") String token,
-			//@RequestHeader(value = "home") String home,
+			// @RequestHeader(value = "home") String home,
 			@RequestParam(value = "filename") String filename,
 			@RequestBody FileEntity name) {
-			//@RequestBody LinkedHashMap name) {
+		// @RequestBody LinkedHashMap name) {
 		try {
 			storageService.rename(home, filename, name.get("filename").toString());
 			return ResponseEntity.ok().build();
@@ -179,7 +185,7 @@ public class CloudStorageController {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ResponseEntity<?> listFiles(@RequestHeader(value = "auth-token") String token,
-			//@RequestHeader(value = "home") String home,
+			// @RequestHeader(value = "home") String home,
 			@RequestParam(value = "limit") Integer limit) throws Exception {
 
 		try {
