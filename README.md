@@ -6,3 +6,5 @@ method POST.
     "login":"email",
     "password":"Welcome@1"
 }
+
+Или с помощью INSERT непосредственно в базе данных как описано в README_DB.txt.
