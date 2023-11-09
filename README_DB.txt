@@ -1,18 +1,18 @@
 psql -h localhost -d postgres -U postgres -W
 
-CREATE ROLE cstorage LOGIN PASSWORD 'cstorage';
+CREATE ROLE csadmin LOGIN PASSWORD 'Welcome@1';
 
 CREATE DATABASE cloudstorage;
 
-GRANT ALL PRIVILEGES ON DATABASE cloudstorage TO cstorage;
+GRANT ALL PRIVILEGES ON DATABASE cloudstorage TO csadmin;
 
 \c cloudstorage
 
-CREATE SCHEMA cs AUTHORIZATION cstorage;
+CREATE SCHEMA cs AUTHORIZATION csadmin;
 
 
 
-psql -h localhost -d cloudstorage -U cstorage -W
+psql -h localhost -d cloudstorage -U csadmin -W
 
 ALTER USER cstorage SET search_path TO cs;
 
