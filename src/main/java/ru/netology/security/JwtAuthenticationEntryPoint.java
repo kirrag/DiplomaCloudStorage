@@ -1,4 +1,4 @@
-package ru.netology.config;
+package ru.netology.security;
 
 import java.io.IOException;
 import java.io.Serializable;
